@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peri_flowers | Сыйкырдуу Аалам</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-cream: #fffaf0;
+            --rose-gold: #e5b3a3;
+            --deep-rose: #d48166;
+            --glass: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-cream);
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* --- Анимациялуу Фон --- */
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #fff5f5, #fffcf0, #f0fff4);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Welcome Screen --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=1500') center/cover;
+            text-align: center;
+        }
+
+        .main-frame {
+            background: var(--glass);
+            padding: 60px;
+            border: 2px solid white;
+            border-radius: 2px;
+            outline: 10px solid var(--glass);
+            outline-offset: 10px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            animation: fadeIn 2s ease;
+        }
+
+        .main-frame:hover {
+            transform: scale(1.02);
+            outline-color: var(--rose-gold);
+        }
+
+        .main-frame h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin: 0;
+            color: var(--deep-rose);
+            letter-spacing: 5px;
+        }
+
+        /* --- Navigation Grid --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 80px 10%;
+        }
+
+        .nav-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.4s;
+            border-bottom: 4px solid transparent;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-card:hover {
+            border-bottom: 4px solid var(--deep-rose);
+            transform: translateY(-10px);
+            background: var(--soft-cream);
+        }
+
+        /* --- Sections Style --- */
+        .section-view {
+            display: none;
+            padding: 60px 10%;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .active { display: block; }
+
+        .back-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-bottom: 40px;
+        }
+
+        .back-btn:hover { background: #000; color: white; }
+
+        /* --- Flower Display --- */
+        .flower-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .flower-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s;
+        }
+
+        .flower-card:hover { transform: scale(1.03); }
+
+        .flower-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .flower-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* --- Special List for "Types" --- */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .simple-list li {
+            font-size: 1.8rem;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--deep-rose);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tg-btn {
+            display: inline-block;
+            background: #24A1DE;
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-animate"></div>
+
+    <!-- Main Entry -->
+    <div id="welcome-screen">
+        <div class="hero">
+            <div class="main-frame" onclick="showSection('garden')">
+                <h1>Peri_flowers</h1>
+                <p style="text-transform: uppercase; letter-spacing: 3px;">Жаратылыштын назик белеги</p>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="nav-card" onclick="showSection('types')">Түрлүү гүлдөр</div>
+            <div class="nav-card" onclick="showSection('popular')">Эң популярдуу</div>
+            <div class="nav-card" onclick="showSection('medical')">Дары гүлдөрү</div>
+            <div class="nav-card" onclick="showSection('telegram')">Байланыш</div>
+        </div>
+    </div>
+
+    <!-- Section 1: Garden -->
+    <div id="garden" class="section-view">
+        <button class="back-btn" onclick="goHome()">← Артка кайтуу</button>
+        <h2 style="font-family: 'Dancing Script'; font-size: 3.5rem;">Бакча Гүлдөрү</h2>
+        <p style="max-width: 600px; margin-bottom: 40px;">Бул бөлүмдө биздин бакчанын сыймыгы болгон назик өсүмдүктөр камтылган. Алар өзгөчө камкордук менен өстүрүлөт.</p>
+        
+        <div class="flower-showcase">
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1589311651543-34e2c884617d?auto=format&fit=crop&q=80&w=800" alt="Garden 1">
+                <div class="flower-info"><h3>Назик Пиондор</h3><p>Жаздын эң жыттуу гүлү</p></div>
+            </div>
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1558905619-171549444a33?auto=format&fit=crop&q=80&w=800" alt="Garden 2">
+                <div class="flower-info"><h3>Тармал Лилия</h3><p>Бакчанын көркүн ачкан сулуулук</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Types -->
+    <div id="types" class="section-view">
+        <button class="back-btn" onclick="goHome()">← Артка кайтуу</button>
+        <h2 style="text-align: center;">Гүлдөрдүн түрлөрү</h2>
+        <ul class="simple-list">
+            <li>1. Розалар</li>
+            <li>2. Лилиялар</li>
+            <li>3. Орхидеялар</li>
+            <li>4. Пиондор</li>
+        </ul>
+    </div>
+
+    <!-- Section 3: Popular -->
+    <div id="popular" class="section-view">
+        <button class="back-btn" onclick="goHome()">← Артка кайтуу</button>
+        <h2>Эң популярдуу гүлдөр</h2>
+        <div class="flower-showcase">
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&q=80&w=800" alt="Rose">
+                <div class="flower-info"><h3>Кызыл Роза</h3><p>Түбөлүктүү классика</p></div>
+            </div>
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=800" alt="Tulip">
+                <div class="flower-info"><h3>Голландия Тюльпаны</h3><p>Дүйнөдөгү эң көп сатылган гүл</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Medical -->
+    <div id="medical" class="section-view">
+        <button class="back-btn" onclick="goHome()">← Артка кайтуу</button>
+        <h2>Дарылык касиети бар гүлдөр</h2>
+        <div class="flower-showcase">
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1596131397999-bb0133ca0736?auto=format&fit=crop&q=80&w=800" alt="Lavender">
+                <div class="flower-info"><h3>Лаванда</h3><p>Тынчтандыруучу жана жагымдуу уйку үчүн</p></div>
+            </div>
+            <div class="flower-card">
+                <img src="https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?auto=format&fit=crop&q=80&w=800" alt="Calendula">
+                <div class="flower-info"><h3>Календула</h3><p>Терини калыбына келтирүүчү күчкө ээ</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Telegram -->
+    <div id="telegram" class="section-view" style="text-align: center;">
+        <button class="back-btn" onclick="goHome()">← Артка кайтуу</button>
+        <h2>Биз менен байланышыңыз</h2>
+        <p>Заказ берүү же кеңеш алуу үчүн басыңыз:</p>
+        <a href="https://t.me/+xFn1V8rialwxYTFi" target="_blank" class="tg-btn">Telegram Каналга өтүү</a>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.getElementById('welcome-screen').style.display = 'none';
+            const sections = document.querySelectorAll('.section-view');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function goHome() {
+            const sections = document.querySelectorAll('.section-view');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById('welcome-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
